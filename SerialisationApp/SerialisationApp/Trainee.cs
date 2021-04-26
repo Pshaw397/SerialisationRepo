@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace SerialisationApp
@@ -12,6 +13,7 @@ namespace SerialisationApp
         public string FirstName { get; init; }
         public string LastName { get; init; }
         public int SpartaNo { get; init; }
+        [JsonIgnore]
         public string FullName => $"{FirstName} {LastName}";
         public override string ToString()
         {
@@ -24,13 +26,13 @@ namespace SerialisationApp
     {
         public string Subject { get; set; }
         public string Title { get; set; }
-        public DateTime startDate { get; set; }
+        public DateTime StartDate { get; set; }
         public List<Trainee> Trainees { get; } = new List<Trainee>();
         [field: NonSerialized]
         private readonly DateTime _lastRead;
         public Course()
         {
-            _lastRead = DateTime.Now
+            _lastRead = DateTime.Now;
         }
         public void AddTrainee(Trainee newTrainee)
         {
